@@ -1,0 +1,54 @@
+	//created on: 12-May-2017
+package bankAccount
+
+//list any import classes here.
+import bankAccount.Account
+import util.OutputDisplay
+import bankAccount.AccountingPeriod
+import bankAccount.CashFlow
+
+//declare any global variables here
+global OutputDisplay showResult;
+
+
+
+rule "Your First Rule"
+
+    when
+        //conditions
+        Account(  )
+    then
+        //actions
+        //System.out.println("The Account Exists");
+        showResult.showText("The Account Exists");
+
+end
+
+	rule "cash Flow"
+    //include attributes such as "salience" here...
+    when
+        //conditions
+        CashFlow(  )
+    then
+        //actions
+         showResult.showText("In Cash flow rule");
+        AccountingPeriod ap = new AccountingPeriod();
+       
+        insert(ap);
+
+end
+
+	rule "Accounting Period"
+    //include attributes such as "salience" here...
+    when
+        //conditions
+        AccountingPeriod(  )
+    then
+        //actions
+        showResult.showText("In Accounting rule");
+        Account a = new Account();
+        a.setAccountno(10);
+        a.setBalance(12.0);
+        insert(a);
+
+end

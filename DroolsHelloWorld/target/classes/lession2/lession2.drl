@@ -1,0 +1,32 @@
+//created on: 12-May-2017
+package bankAccounts
+
+import bankAccount.Account
+import util.OutputDisplay
+import bankAccount.CashFlow
+import bankAccount.AccountingPeriod
+
+
+global OutputDisplay showResults;
+
+rule "Credit rule"
+
+       when
+           $cash :CashFlow( $aDate : mvtDate, $no : accountno ,type == CashFlow.CREDIT )
+           $acc : Account(accountno ==$no  )
+           $period : AccountingPeriod(  startDate <= $aDate && endDate >= $aDate)
+       then
+           $acc.setBalance($acc.getBalance()+$cash.getAmount());
+           showResults.showText("Account no "+$acc.getAccountno()+ " has now a balance of "+$acc.getBalance());
+   end
+rule "Debit rule"
+
+    when
+        $cash :CashFlow( $aDate : mvtDate, $no : accountno ,type == CashFlow.DEBIT )
+        $acc : Account(accountno ==$no  )
+        $period : AccountingPeriod(  startDate <= $aDate && endDate >= $aDate)
+    then
+        $acc.setBalance($acc.getBalance()-$cash.getAmount());
+        showResults.showText("Account no "+$acc.getAccountno()
+                  + " has now a balance of "+$acc.getBalance());
+end
