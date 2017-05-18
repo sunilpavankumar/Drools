@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <kmodule xmlns="http://jboss.org/kie/6.0.0/kmodule">
-    <kbase name="rules" packages="lession1">
+   <!--  <kbase name="rules" packages="lession1">
         <ksession name="ksession-rules"/>
     </kbase>
     
@@ -10,5 +10,14 @@
     
      <kbase name="rules3" packages="lession3">
         <ksession name="ksession-lesson3"/>
+    </kbase> -->
+    
+    <kbase name="rules4" packages="lession4">
+        <ksession name="ksession-lesson4"/>
     </kbase>
+    
+     <kbase name="rules4a" packages="lession4a">
+        <ksession name="ksession-lesson4a"/>
+    </kbase>
+    
 </kmodule>

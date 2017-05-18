@@ -1,0 +1,42 @@
+//created on: 18-May-2017
+package cours
+
+//list any import classes here.
+
+
+
+//declare any global variables here
+
+
+
+
+import bankAccount.Account
+import bankAccount.AccountingPeriod;
+import bankAccount.CashFlow;
+import util.OutputDisplay;
+
+global OutputDisplay showResult;
+
+rule "Account group1"
+    ruleflow-group "Group1"
+    when
+        Account(  )
+    then 
+        showResult.showText("Account in Group1");
+end
+rule "Account group2"
+    ruleflow-group "Group2"
+    when
+        Account(  )
+    then 
+        showResult.showText("Account in Group2");
+end
+
+rule "Start Process"
+    
+    when
+        
+    then 
+       
+     kcontext.getKieRuntime().startProcess("RF1");
+end
