@@ -1,0 +1,35 @@
+//created on: 18-May-2017
+package cours
+
+//list any import classes here.
+
+//#list any import classes here.
+import bankAccount.Account;
+import bankAccount.AccountingPeriod;
+import bankAccount.CashFlow;
+import util.OutputDisplay;
+
+global OutputDisplay showResult;
+
+rule "start process"
+    when
+    then
+        kcontext.getKieRuntime().startProcess("RF3");
+end
+
+rule "Account group1"
+    ruleflow-group "group1"
+    when
+        Account(balance > 0  )
+    then 
+        showResult.showText("Account in Group1 > 1000 ");
+
+end
+rule "Account group2"
+    ruleflow-group "group2"
+    when
+        Account(  )
+    then 
+        showResult.showText("Account in Group2 < 1000");
+
+end

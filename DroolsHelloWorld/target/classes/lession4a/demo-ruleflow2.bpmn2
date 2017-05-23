@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <process processType="Private" isExecutable="true" id="RF3" name="demo-ruleflow2" tns:packageName="cours" >
+
+    <extensionElements>
+     <tns:import name="bankAccount.Account" />
+    </extensionElements>
+    <!-- nodes -->
+    <startEvent id="_jbpm-unique-6" name="Start"  isInterrupting="false">
+    </startEvent>
+    <inclusiveGateway id="_jbpm-unique-7" name="Gateway" gatewayDirection="Diverging" >
+    </inclusiveGateway>
+    <businessRuleTask id="_jbpm-unique-8" name="calculate1" g:ruleFlowGroup="group1" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </businessRuleTask>
+    <businessRuleTask id="_jbpm-unique-9" name="calculate2" g:ruleFlowGroup="group2" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </businessRuleTask>
+    <exclusiveGateway id="_jbpm-unique-10" name="Gateway" gatewayDirection="Converging" >
+    </exclusiveGateway>
+    <endEvent id="_jbpm-unique-11" name="End" >
+        <terminateEventDefinition />
+    </endEvent>
+
+    <!-- connections -->
+    <sequenceFlow id="_jbpm-unique-6-_jbpm-unique-7" sourceRef="_jbpm-unique-6" targetRef="_jbpm-unique-7" />
+    <sequenceFlow id="_jbpm-unique-7-_jbpm-unique-8" sourceRef="_jbpm-unique-7" targetRef="_jbpm-unique-8" name="constraint" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.jboss.org/drools/rule" >Account( balance &gt;1000 )</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_jbpm-unique-7-_jbpm-unique-9" sourceRef="_jbpm-unique-7" targetRef="_jbpm-unique-9" name="constraint" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.jboss.org/drools/rule" >Account( balance &lt;=1000 )</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_jbpm-unique-8-_jbpm-unique-10" sourceRef="_jbpm-unique-8" targetRef="_jbpm-unique-10" />
+    <sequenceFlow id="_jbpm-unique-9-_jbpm-unique-10" sourceRef="_jbpm-unique-9" targetRef="_jbpm-unique-10" />
+    <sequenceFlow id="_jbpm-unique-10-_jbpm-unique-11" sourceRef="_jbpm-unique-10" targetRef="_jbpm-unique-11" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="RF3" >
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-6" >
+        <dc:Bounds x="36" y="137" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-7" >
+        <dc:Bounds x="129" y="135" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-8" >
+        <dc:Bounds x="222" y="97" width="80" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-9" >
+        <dc:Bounds x="226" y="209" width="80" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-10" >
+        <dc:Bounds x="357" y="144" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_jbpm-unique-11" >
+        <dc:Bounds x="463" y="144" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-6-_jbpm-unique-7" >
+        <di:waypoint x="60" y="161" />
+        <di:waypoint x="153" y="159" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-7-_jbpm-unique-8" >
+        <di:waypoint x="153" y="159" />
+        <di:waypoint x="262" y="121" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-7-_jbpm-unique-9" >
+        <di:waypoint x="153" y="159" />
+        <di:waypoint x="266" y="233" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-8-_jbpm-unique-10" >
+        <di:waypoint x="262" y="121" />
+        <di:waypoint x="381" y="168" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-9-_jbpm-unique-10" >
+        <di:waypoint x="266" y="233" />
+        <di:waypoint x="381" y="168" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_jbpm-unique-10-_jbpm-unique-11" >
+        <di:waypoint x="381" y="168" />
+        <di:waypoint x="487" y="168" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>
